@@ -1,1 +1,34 @@
-.venv
+# venv / python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# notebooks
+.ipynb_checkpoints/
+
+# training artifacts (regeneratable, can be large)
+results/
+wandb/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# logs
+*.log
+nohup.out
+
+# HF / local caches (defensive — usually live in ~/.cache)
+.cache/
+hf_cache/

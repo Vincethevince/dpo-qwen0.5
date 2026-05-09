@@ -1,0 +1,17 @@
+# core
+torch>=2.1
+transformers>=4.45
+datasets>=2.20
+accelerate>=0.30
+safetensors>=0.4
+
+# config + analysis
+pyyaml>=6.0
+pandas>=2.0
+matplotlib>=3.7
+
+# flash-attn is NOT installed via this file — it needs CUDA toolkit + build
+# deps and pip will fail on most boxes. Two options on Colab A100:
+#   1) MAX_JOBS=4 pip install flash-attn --no-build-isolation
+#   2) Skip it and pass attn_implementation="sdpa" in src/dpo.py
+#      (PyTorch built-in, ~10% slower, zero install pain).
