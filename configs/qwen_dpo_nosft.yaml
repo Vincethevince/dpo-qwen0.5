@@ -1,0 +1,50 @@
+# DPO run config — no-SFT pathology probe
+#
+# Run DPO on Qwen2.5-0.5B Base(not Instruct). Expectation: margin grows but BOTH mean_chosen_r 
+# and mean_rejected_r go strongly negative — i.e. absolute generation quality
+# collapses even though preference ordering improves. 
+#
+# Documentation-only. src/dpo.py reads CLI args, not this file.
+#
+# command:
+#   python -u -m src.dpo \
+#       --model-name Qwen/Qwen2.5-0.5B \
+#       --beta 0.1 \
+#       --lr 5e-7 \
+#       --batch-size 2 \
+#       --grad-accum 8 \
+#       --max-steps 300 \
+#       --log-every 5 \
+#       --run-name qwen_dpo_nosft
+
+run_name: qwen_dpo_nosft
+out_root: results
+
+# model — Qwen2.5-0.5B Base (no -Instruct)
+model_name: Qwen/Qwen2.5-0.5B
+attn_impl: auto                # auto-detect: flash_attention_2 if available else sdpa
+dtype: bfloat16
+
+# DPO
+beta: 0.1
+
+# optim
+lr: 5.0e-7
+optimizer: AdamW
+
+# batching
+batch_size: 2
+grad_accum: 8
+num_epochs: 1
+max_steps: 300                 
+
+# data
+dataset: HuggingFaceH4/ultrafeedback_binarized
+train_split: train_prefs
+eval_split: test_prefs
+max_prompt_len: 512
+max_total_len: 1024
+
+# misc
+seed: 42
+log_every: 5                   # finer logging — only 300 steps total

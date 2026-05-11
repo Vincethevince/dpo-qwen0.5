@@ -1,0 +1,46 @@
+# DPO run config — β=0.5 (ablation comparison vs β=0.1)
+#
+# Documentation-only. src/dpo.py reads CLI args, not this file.
+# Use this YAML to reconstruct the run; the command below produces it.
+#
+# command:
+#   python -u -m src.dpo \
+#       --beta 0.5 \
+#       --lr 5e-7 \
+#       --batch-size 2 \
+#       --grad-accum 8 \
+#       --max-steps 1500 \
+#       --log-every 10 \
+#       --run-name qwen_dpo_b05
+
+run_name: qwen_dpo_b05
+out_root: results
+
+# model
+model_name: Qwen/Qwen2.5-0.5B-Instruct
+attn_impl: auto                # auto-detect: flash_attention_2 if available else sdpa
+dtype: bfloat16
+
+# DPO
+beta: 0.5                      # 5× stronger KL anchor than b01
+
+# optim
+lr: 5.0e-7
+optimizer: AdamW
+
+# batching
+batch_size: 2                  # micro-batch
+grad_accum: 8                  # effective batch = 16
+num_epochs: 1
+max_steps: 1500
+
+# data
+dataset: HuggingFaceH4/ultrafeedback_binarized
+train_split: train_prefs
+eval_split: test_prefs
+max_prompt_len: 512
+max_total_len: 1024
+
+# misc
+seed: 42
+log_every: 10
