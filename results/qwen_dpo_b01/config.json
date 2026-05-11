@@ -1,0 +1,12 @@
+{
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "beta": 0.1,
+  "lr": 5e-07,
+  "batch_size": 4,
+  "grad_accum": 8,
+  "num_epochs": 1,
+  "max_steps": 8000,
+  "seed": 42,
+  "max_prompt_len": 512,
+  "max_total_len": 1024
+}

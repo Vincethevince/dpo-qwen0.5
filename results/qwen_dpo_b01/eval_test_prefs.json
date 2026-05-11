@@ -1,0 +1,11 @@
+{
+  "ckpt": "results/qwen_dpo_b01/checkpoint",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "split": "test_prefs",
+  "beta": 0.1,
+  "n_pairs": 1813,
+  "pref_acc": 0.5819084390512962,
+  "mean_margin": 0.042396250712570735,
+  "mean_chosen_r": -0.13219901434440212,
+  "mean_rejected_r": -0.17459526487923563
+}
