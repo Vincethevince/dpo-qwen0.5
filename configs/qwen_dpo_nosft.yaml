@@ -11,9 +11,9 @@
 #       --model-name Qwen/Qwen2.5-0.5B \
 #       --beta 0.1 \
 #       --lr 5e-7 \
-#       --batch-size 2 \
+#       --batch-size 4 \
 #       --grad-accum 8 \
-#       --max-steps 400 \
+#       --max-steps 2000 \
 #       --log-every 5 \
 #       --run-name qwen_dpo_nosft
 
@@ -33,10 +33,10 @@ lr: 5.0e-7
 optimizer: AdamW
 
 # batching
-batch_size: 2
+batch_size: 4
 grad_accum: 8
 num_epochs: 1
-max_steps: 400                 # 50 optimizer steps at grad_accum=8
+max_steps: 2000
 
 # data
 dataset: HuggingFaceH4/ultrafeedback_binarized
