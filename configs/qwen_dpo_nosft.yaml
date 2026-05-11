@@ -13,7 +13,7 @@
 #       --lr 5e-7 \
 #       --batch-size 2 \
 #       --grad-accum 8 \
-#       --max-steps 300 \
+#       --max-steps 400 \
 #       --log-every 5 \
 #       --run-name qwen_dpo_nosft
 
@@ -36,7 +36,7 @@ optimizer: AdamW
 batch_size: 2
 grad_accum: 8
 num_epochs: 1
-max_steps: 300                 
+max_steps: 400                 # 50 optimizer steps at grad_accum=8
 
 # data
 dataset: HuggingFaceH4/ultrafeedback_binarized
@@ -47,4 +47,4 @@ max_total_len: 1024
 
 # misc
 seed: 42
-log_every: 5                   # finer logging — only 300 steps total
+log_every: 5                   # finer logging — only 400 micro-steps total
