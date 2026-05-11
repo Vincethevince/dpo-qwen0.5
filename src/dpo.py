@@ -255,8 +255,15 @@ if __name__ == "__main__":
         "--sanity",
         action="store_true",
         help="run loss sanity tests then exit"
-        )
+    )
     
+    parser.add_argument(
+        "--model-name", 
+        type=str, 
+        default="Qwen/Qwen2.5-0.5B-Instruct",
+        help="HF model id"
+    )
+
     parser.add_argument("--beta", type=float, default=0.1)
     parser.add_argument("--lr", type=float, default=5e-7)
     parser.add_argument("--batch-size", type=int, default=2)
@@ -268,7 +275,8 @@ if __name__ == "__main__":
         "--attn-impl", 
         type=str, 
         default="auto", 
-        choices=["auto", "flash_attention_2","sdpa","eager"])
+        choices=["auto", "flash_attention_2","sdpa","eager"]
+    )
 
     args = parser.parse_args()
 
@@ -276,7 +284,7 @@ if __name__ == "__main__":
         _sanity_check_loss()
     else:
         train(
-            beta=args.beta, lr=args.lr,
+            model_name=args.model_name, beta=args.beta, lr=args.lr,
             batch_size=args.batch_size, grad_accum=args.grad_accum,
             max_steps=args.max_steps, log_every=args.log_every,
             run_name=args.run_name, attn_impl=args.attn_impl,
