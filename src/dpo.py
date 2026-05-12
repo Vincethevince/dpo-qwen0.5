@@ -19,13 +19,13 @@ def dpo_loss(
 ):
     """
     DPO loss:
-        L = - E[ log sigmoid(beta * ( (logp_pi(y_w) - logp_ref(y_w)) 
-                                    - (logp_pi(y_l) - logp_ref(y_l)) ) ) ]
+        L = - E[ log sigmoid(β * ( (logπ(y_w) - logπ_ref(y_w)) 
+                                    - (logπ(y_l) - logπ_ref(y_l)) ) ) ]
 
     Returns:
         loss:               scalar
-        chosen_rewards:     beta * (logp_pi(y_w) - logp_ref(y_w))      # (B) detached
-        rejected_rewards:   beta * (logp_pi(y_l) - logp_ref(y_l))      # (B) detached
+        chosen_rewards:     β * (logπ(y_w) - logπ_ref(y_w))      # (B) detached
+        rejected_rewards:   β * (logπ(y_l) - logπ_ref(y_l))      # (B) detached
     """
 
     chosen_rewards = beta * (policy_chosen_logps - ref_chosen_logps)
